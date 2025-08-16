@@ -12,7 +12,7 @@ public class Date {
     private int date,month,year;
 
     // task 4 - implement a constructor
-    public Date(int date,int month,int year){
+    public Date(int month,int date,int year){
         this.date = date;
         this.month = month;
         this.year = year;
@@ -32,7 +32,7 @@ public class Date {
     }
 
     public String getMonthName(){
-        return this.MONTHS[this.month];
+        return this.MONTHS[this.getMonth()];
     }
 
     public String getDayOfWeekName(){

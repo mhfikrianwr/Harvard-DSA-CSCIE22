@@ -3,19 +3,66 @@
  * an individual date.
  */
 package problem2;
+import java.time.LocalDate;
 public class Date {
     /* a class constant for the smallest allowed year */
     public static final int MIN_YEAR = 1583; 
     
     // task 3
-    private int day,month,year;
+    private int date,month,year;
 
     // task 4 - implement a constructor
-    public Date(int day,int month,int year){
-        this.day = day;
+    public Date(int date,int month,int year){
+        this.date = date;
         this.month = month;
         this.year = year;
     }
+
+    // task 5 -> implement accesor 
+    public int getMonth(){
+        return this.month;
+    }
+
+    public int getDate(){
+        return this.date;
+    }
+
+    public int getYear(){
+        return this.year;
+    }
+
+    public String getMonthName(){
+        return this.MONTHS[this.month];
+    }
+
+    public String getDayOfWeekName(){
+        return this.DAYS_OF_WEEK[this.dayOfWeekNumber(this.month, this.date, this.MIN_YEAR)];
+    }
+    public String toString(){
+        return this.getDayOfWeekName() + ", " + this.getMonthName() + " " +this.date + "," + this.year;
+    }
+
+    // task 6 -> add method to compare to date objects
+
+    public boolean isEqual(Date m) {
+        LocalDate date1 = LocalDate.of(this.getYear(), this.getMonth(), this.getDate());
+        LocalDate date2 = LocalDate.of(m.getYear(), m.getMonth(), m.getDate());
+        return date1.compareTo(date2) == 0;
+    }
+
+    public boolean isBefore(Date m){
+        LocalDate date1 = LocalDate.of(this.getYear(), this.getMonth(), this.getDate());
+        LocalDate date2 = LocalDate.of(m.getYear(), m.getMonth(), m.getDate());
+        return date1.compareTo(date2) < 0;
+    }
+
+    public boolean isAfter(Date m) {
+        LocalDate date1 = LocalDate.of(this.getYear(), this.getMonth(), this.getDate());
+        LocalDate date2 = LocalDate.of(m.getYear(), m.getMonth(), m.getDate());
+        return date1.compareTo(date2) > 0;
+    }
+
+    
     /*
      * A class-constant array containing the names of the months.
      * The positions of the names in the array correspond to the 

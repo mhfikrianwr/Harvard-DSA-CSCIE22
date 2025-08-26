@@ -104,9 +104,8 @@ public class Puzzle {
             System.out.println("Solution-" + this.numOfSolution);
             this.numOfSolution++;
             this.display();
-            return true;
         }
-        if(this.valIsFixed[rows][column]) return solveRB(n + 1);
+        if(rows < 9 && this.valIsFixed[rows][column]) return solveRB(n + 1);
         for(int i = 1; i <= 9; i++){
             if(!this.colHasValue[column][i] && !this.rowHasValue[rows][i] && !this.subgridHasValue[rows/SUBGRID_DIM][column/SUBGRID_DIM][i]){
                 this.placeVal(i, rows, column);
@@ -137,6 +136,8 @@ public class Puzzle {
         this.subgridHasValue[row/SUBGRID_DIM][col/SUBGRID_DIM][val] = true;
         
         // XXX: add code to make any necessary changes to the fields you add.
+        rowHasValue[row][this.values[row][col]] = false;
+        colHasValue[col][this.values[row][col]] = false;
         rowHasValue[row][val] = true;
         colHasValue[col][val] = true;
     }
